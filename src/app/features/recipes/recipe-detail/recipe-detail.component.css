@@ -1,0 +1,36 @@
+.header-image {
+    width: 100vw;
+    position: relative;
+}
+
+img {
+    width: 100vw;
+    object-fit: cover;
+    height: 70vh;
+}
+
+.recipe-info-container {
+    position: absolute;
+    top: 8%;
+    left: 8%;
+    width: 80vw;
+    
+}
+
+.recipe-name-box {
+    background-color: aliceblue;
+}
+
+.recipe-detail-container {
+    width: 100vw;
+    padding: 1rem;
+}
+
+.ingredients-container {
+    background-color: bisque;
+}
+
+.descriptions-container {
+    background-color: bisque;
+    padding: 1rem;
+}
