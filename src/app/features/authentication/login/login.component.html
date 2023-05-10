@@ -1,0 +1,18 @@
+<div  fxLayout="column" fxLayoutAlign="center center" class="main-container">
+  <h1>Bejelentkezés</h1>
+  <form [formGroup]="form" fxLayout="column" fxLayoutAlign="center center">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Jelszó</mat-label>
+      <input matInput type="text" formControlName="password" />
+    </mat-form-field>
+  </form>
+  <div class="button-container" fxLayout="column" fxLayoutGap="1rem">
+    <button fxFlex="100%" mat-raised-button (click)="login()">Bejelentkezés</button>
+    <a fxFlex="100%" routerLink="registration" mat-raised-button>Regisztráció</a>
+    <a fxFlex="100%" routerLink="/dashboard" mat-raised-button>Regisztáció nélkül folytatom</a>
+  </div>
+</div>

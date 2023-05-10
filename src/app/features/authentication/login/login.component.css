@@ -1,0 +1,16 @@
+.main-container {
+    height: 100vh;
+}
+
+.button-container {
+    width: 15%;
+    height: 8rem;
+}
+
+form {
+    width: 15%;
+}
+
+mat-form-field {
+    width: 100%;
+}

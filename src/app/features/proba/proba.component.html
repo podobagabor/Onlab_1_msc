@@ -1,0 +1,15 @@
+<div *ngIf="recipes | async" >
+    <div *ngFor="let recipe of (recipes | async)">
+        <h1>{{recipe?.name}}</h1>
+        <h4>Hozzávalók</h4>
+        <div>
+            <div *ngFor="let ingredientGroup of recipe?.ingredients">
+                <h6>{{recipe?.name}}</h6>
+                <ul *ngFor="let ingredient of ingredientGroup.ingredients">
+                    {{ingredient.name}} : {{ingredient.amount}} {{ingredient.unit}}
+                </ul>
+            </div>
+           
+        </div>
+    </div>
+</div>

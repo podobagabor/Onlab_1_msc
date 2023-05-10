@@ -1,0 +1,29 @@
+<div  fxLayout="column" fxLayoutAlign="center center" class="main-container">
+    <h1>Regisztráció</h1>
+<form [formGroup]="form" fxLayout="column" fxLayoutAlign="center center">
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput type="text" formControlName="email" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Felhasználó név</mat-label>
+    <input matInput type="text" formControlName="userName" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Teljes név</mat-label>
+    <input matInput type="text" formControlName="fullName" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Jelszó</mat-label>
+    <input matInput type="text" formControlName="firstPassword" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Jelszó újra</mat-label>
+    <input matInput type="text" formControlName="secondPassword" />
+  </mat-form-field>
+</form>
+    <div class="button-container" fxLayout="column" fxLayoutGap="1rem">
+      <button fxFlex="100%" mat-raised-button (click)="registration()">Regisztráció</button>
+      <a fxFlex="100%" routerLink="/login" mat-raised-button>Vissza</a>
+    </div>
+  </div>
