@@ -1,0 +1,29 @@
+<div fxLayout="row" fxLayoutAlign="center" fxFlex="100%">
+  <mat-card fxFlex="60%" fxLayout="column" fxLayoutAlign="center" class="main-container" fxLayoutGap="10px">
+    <h1>Új recept felvétele</h1>
+    <mat-form-field>
+      <mat-label>Recept neve</mat-label>
+      <input matInput type="text" formControlName="name" />
+    </mat-form-field>
+    <mat-card>
+      <mat-card-title>Eddig felvett lépések</mat-card-title>
+    </mat-card>
+    <mat-card-title>Lépések felvétele</mat-card-title>
+    <mat-card-subtitle>Lépés szövege:</mat-card-subtitle>
+    <mat-form-field>
+      <mat-label>Leírás</mat-label>
+      <textarea
+        matInput
+        type="text"
+        formControlName="description"
+        cdkTextareaAutosize
+        cdkAutosizeMinRows="4"
+      ></textarea>
+    </mat-form-field>
+    <mat-card-subtitle>Tölts fel hozzá illusztrációt:</mat-card-subtitle>
+    <input type="file" (change)="onChange($event)" />
+    <button (click)="saveDescription()" mat-raised-button type="submit">
+      Lépés felvétele
+    </button>
+  </mat-card>
+</div>
