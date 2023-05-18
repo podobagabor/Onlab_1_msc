@@ -3,7 +3,7 @@
     position: relative;
 }
 
-img {
+.header-image {
     width: 100vw;
     object-fit: cover;
     height: 70vh;
@@ -30,7 +30,26 @@ img {
     background-color: bisque;
 }
 
-.descriptions-container {
+.descriptions-box {
     background-color: bisque;
     padding: 1rem;
+}
+
+.description-image {
+    object-fit: cover;
+}
+
+.avatar-icon {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+}
+
+.comment-box {
+    background-color: antiquewhite;
+    padding: 2rem;
+}
+
+.comment-header {
+    text-align: center;
 }

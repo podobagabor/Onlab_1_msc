@@ -1,10 +1,24 @@
 export interface Recipe {
-    id: number,
     name: string,
     rating: number,
-    description: Description[],
+    descriptions: Description[],
     comments: Comment[],
     ingredients: IngredientsGroup[],
+    photo: string,
+}
+
+export interface RecipeCreate {
+    Name: string,
+    Photo: File,
+    Descriptions: DescriptionCreate[],
+    Ingredients: IngredientsGroupCreate[],
+    UserId:number,
+    Comments: Comment[]
+}
+
+export interface DescriptionCreate {
+    text: string,
+    photo: File,
 }
 
 export interface Comment {
@@ -14,16 +28,25 @@ export interface Comment {
 
 export interface Description {
     text: string,
+    photo: string,
+}
+
+export interface IngredientsGroupCreate {
+    name: string,
+    ingredients: IngredientItemCreate[]
 }
 
 export interface IngredientsGroup {
-    id: number,
     name: string,
     ingredients: IngredientItem[]
 }
 
+export interface IngredientItemCreate {
+    id:number
+    amount: number,
+}
+
 export interface IngredientItem {
-    id: number,
     name: string,
     unit: string,
     amount: number,

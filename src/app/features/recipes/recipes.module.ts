@@ -4,16 +4,20 @@ import { RecipesRoutingModule } from "./recipes-routing.modul";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { CustomMaterialModule } from "src/app/custom-material/custom-material.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { RecipeFormComponent } from "./recipe-form/recipe-form.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
     declarations: [
         RecipesComponent,
-        RecipeDetailComponent
+        RecipeDetailComponent,
+        RecipeFormComponent
     ],
     imports: [
         RecipesRoutingModule,
         CustomMaterialModule,
-        FlexLayoutModule
+        FlexLayoutModule,
+        ReactiveFormsModule,
     ],
     exports: [
 

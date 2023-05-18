@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RecipetService } from 'src/app/api/RecipetService';
+import { RecipeService } from 'src/app/api/RecipeService';
 import { Recipe } from 'src/app/shared/models';
 
 @Component({
@@ -10,12 +10,12 @@ import { Recipe } from 'src/app/shared/models';
 })
 export class ProbaComponent implements OnInit {
 
-  constructor(private recipeService: RecipetService) {}
+  constructor(private recipeService: RecipeService) {}
 
   recipes?: Observable<Recipe[]>
 
   ngOnInit(): void {
-    this.recipes = this.recipeService.getRecepies();
+    this.recipes = this.recipeService.getRecipes();
   }
 
 }

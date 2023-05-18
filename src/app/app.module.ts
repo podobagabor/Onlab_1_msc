@@ -20,6 +20,7 @@ import { LayoutComponent } from './shared/layout/layout.component';
 import { LoginDialogComponent } from './shared/layout/login-dialog/login-dialog.component';
 import { RecipesComponent } from './features/recipes/recipes.component';
 import { RecipeDetailComponent } from './features/recipes/recipe-detail/recipe-detail.component';
+import { RecipeFormComponent } from './features/recipes/recipe-form/recipe-form.component';
 
 @NgModule({
   declarations: [
