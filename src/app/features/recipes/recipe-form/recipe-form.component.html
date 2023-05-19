@@ -1,53 +1,125 @@
 <div fxLayout="row" fxLayoutAlign="center" fxFlex="100%">
-  <mat-card fxFlex="60%" fxLayout="column" fxLayoutAlign="center" class="main-container" fxLayoutGap="10px">
+  <mat-card fxFlex="60%" fxLayout="column" fxLayoutAlign="center" class="main-container" fxLayoutGap="30px">
     <h1>Új recept felvétele</h1>
+    <hr>
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+      <mat-card-title>Alapadatok</mat-card-title>
+      <mat-form-field>
+        <mat-label>Recept neve</mat-label>
+        <input matInput type="text" formControlName="name" />
+      </mat-form-field>
+      <mat-card-subtitle>Tölts fel hozzá borítót:</mat-card-subtitle>
+      <input type="file" (change)="onChange($event)" />
+    </div>
+    <hr>
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+      <mat-card-title>Lépések felvétele</mat-card-title>
+      <mat-card fxLayout="column" class="table-container">
+        <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+          <mat-card-title fxLayoutAlign="center" fxFlex="60%">Lépés szövege</mat-card-title>
+          <mat-card-title fxLayoutAlign="center" fxFlex="20%">Illusztráció</mat-card-title>
+          <mat-card-title fxLayoutAlign="center" fxFlex="20%">Szerkesztés</mat-card-title>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+          <p fxLayoutAlign="center" fxFlex="60%">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum sed
+            nostrum distinctio, quaerat esse nam tenetur laudantium eligendi voluptatibus iusto.</p>
+          <p fxLayoutAlign="center" fxFlex="20%"> tesztkep.jpg</p>
+          <mat-icon fxLayoutAlign="end" fxFlex="10%">
+            edit
+          </mat-icon>
+          <mat-icon fxLayoutAlign="start" fxFlex="10%">
+            delete
+          </mat-icon>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+          <p fxLayoutAlign="center" fxFlex="60%">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia,
+            ratione facere esse commodi ab quo laborum autem culpa nam reprehenderit facilis aliquid nemo totam voluptates
+            accusamus labore a non harum?</p>
+          <p fxLayoutAlign="center" fxFlex="20%"> tesztkep.jpg</p>
+          <mat-icon fxLayoutAlign="end" fxFlex="10%">
+            edit
+          </mat-icon>
+          <mat-icon fxLayoutAlign="start" fxFlex="10%">
+            delete
+          </mat-icon>
+        </div>
+      </mat-card>
+      <mat-card-subtitle>Lépés szövege:</mat-card-subtitle>
+      <mat-form-field>
+        <mat-label>Leírás</mat-label>
+        <textarea matInput type="text" formControlName="description" cdkTextareaAutosize
+          cdkAutosizeMinRows="4"></textarea>
+      </mat-form-field>
+      <mat-card-subtitle>Tölts fel hozzá illusztrációt:</mat-card-subtitle>
+      <input type="file" (change)="onChange($event)" />
+      <button (click)="saveDescription()" mat-raised-button type="submit">
+        Lépés felvétele
+      </button>
+    </div>
+    <hr>
+    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px">
+      <mat-card-title>Hozzzávalók felvétele</mat-card-title>
+      <mat-card fxLayout="column" class="table-container">
+        <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+          <mat-card-title fxLayoutAlign="center" fxFlex="30%">Hozzávaló csoport</mat-card-title>
+          <mat-card-title fxLayoutAlign="center" fxFlex="30%">Hozzávaló</mat-card-title>
+          <mat-card-title fxLayoutAlign="center" fxFlex="30%">Szerkesztés</mat-card-title>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+          <p fxLayoutAlign="center" fxFlex="30%">Lorem ipsum dolor sit.</p>
+          <p fxLayoutAlign="center" fxFlex="30%">100ml Tej</p>
+          <mat-icon fxLayoutAlign="end" fxFlex="15%">
+            edit
+          </mat-icon>
+          <mat-icon fxLayoutAlign="start" fxFlex="15%">
+            delete
+          </mat-icon>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+          <p fxLayoutAlign="center" fxFlex="30%">Lorem ipsum dolor sit.</p>
+          <p fxLayoutAlign="center" fxFlex="30%">100ml Tej</p>
+          <mat-icon fxLayoutAlign="end" fxFlex="15%">
+            edit
+          </mat-icon>
+          <mat-icon fxLayoutAlign="start" fxFlex="15%">
+            delete
+          </mat-icon>
+        </div>
+      </mat-card>
+      <mat-card-subtitle>Hozzávaló csoport</mat-card-subtitle>
     <mat-form-field>
-      <mat-label>Recept neve</mat-label>
+      <mat-label>Hozzávaló csoport felvétele</mat-label>
       <input matInput type="text" formControlName="name" />
     </mat-form-field>
-    <mat-card fxLayout="column" class="desc-table">
-      <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
-        <mat-card-title fxLayoutAlign="center" fxFlex="60%">Lépés szövege</mat-card-title>
-        <mat-card-title fxLayoutAlign="center" fxFlex="20%">Illusztráció</mat-card-title>
-        <mat-card-title fxLayoutAlign="center" fxFlex="20%">Szerkesztés</mat-card-title>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
-        <p fxLayoutAlign="center" fxFlex="60%">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum sed nostrum distinctio, quaerat esse nam tenetur laudantium eligendi voluptatibus iusto.</p>
-        <p fxLayoutAlign="center" fxFlex="20%"> tesztkep.jpg</p>
-        <mat-icon fxLayoutAlign="end" fxFlex="10%">
-          edit
-        </mat-icon>
-        <mat-icon fxLayoutAlign="start" fxFlex="10%">
-          delete
-        </mat-icon>
-      </div>
-      <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
-        <p fxLayoutAlign="center" fxFlex="60%">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, ratione facere esse commodi ab quo laborum autem culpa nam reprehenderit facilis aliquid nemo totam voluptates accusamus labore a non harum?</p>
-        <p fxLayoutAlign="center" fxFlex="20%"> tesztkep.jpg</p>
-        <mat-icon fxLayoutAlign="end" fxFlex="10%">
-          edit
-        </mat-icon>
-        <mat-icon fxLayoutAlign="start" fxFlex="10%">
-          delete
-        </mat-icon>
-      </div>
-    </mat-card>
-    <mat-card-title>Lépések felvétele</mat-card-title>
-    <mat-card-subtitle>Lépés szövege:</mat-card-subtitle>
-    <mat-form-field>
-      <mat-label>Leírás</mat-label>
-      <textarea
-        matInput
-        type="text"
-        formControlName="description"
-        cdkTextareaAutosize
-        cdkAutosizeMinRows="4"
-      ></textarea>
-    </mat-form-field>
-    <mat-card-subtitle>Tölts fel hozzá illusztrációt:</mat-card-subtitle>
-    <input type="file" (change)="onChange($event)" />
     <button (click)="saveDescription()" mat-raised-button type="submit">
-      Lépés felvétele
+      Csoport felvétele
     </button>
+    <mat-card-subtitle>Hozzávaló elem felvétele</mat-card-subtitle>
+    <mat-form-field>
+      <mat-label>Válaszd ki, a hozzávaló csoportot!</mat-label>
+      <mat-select>
+        <mat-option [value]="'első csoport'">ELső csoport</mat-option>
+        <mat-option [value]="'második csoport'">Második csoport</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+      <mat-form-field fxFlex="70%">
+        <mat-label>Válaszd ki, a hozzávalót!</mat-label>
+        <mat-select>
+          <mat-option [value]="'első csoport'">Tej</mat-option>
+          <mat-option [value]="'második csoport'">Tojás</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button fxFlex="30%" mat-raised-button>Új felvétele</button>
+    </div>
+    <mat-form-field>
+      <mat-label>Mennyiség</mat-label>
+      <input matInput type="number" formControlName="name" />
+      <span matSuffix>ml</span>
+    </mat-form-field>
+    <button (click)="saveDescription()" mat-raised-button type="submit">
+      Hozzávaló felvétele
+    </button>
+    </div>
   </mat-card>
 </div>

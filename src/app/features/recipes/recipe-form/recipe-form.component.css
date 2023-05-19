@@ -1,3 +1,4 @@
+@import "mytheme.css" ;
 .description-box {
     height: auto;
     background-color: whitesmoke;
@@ -27,5 +28,16 @@
 }
 
 .desc-table {
+    padding: 10px;
+}
+
+hr {
+    width: 100%;
+    border-color: grey;
+    
+}
+
+.table-container {
+    background-color: #eeeeee;
     padding: 10px;
 }
