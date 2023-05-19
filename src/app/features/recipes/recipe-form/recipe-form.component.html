@@ -5,8 +5,32 @@
       <mat-label>Recept neve</mat-label>
       <input matInput type="text" formControlName="name" />
     </mat-form-field>
-    <mat-card>
-      <mat-card-title>Eddig felvett lépések</mat-card-title>
+    <mat-card fxLayout="column" class="desc-table">
+      <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+        <mat-card-title fxLayoutAlign="center" fxFlex="60%">Lépés szövege</mat-card-title>
+        <mat-card-title fxLayoutAlign="center" fxFlex="20%">Illusztráció</mat-card-title>
+        <mat-card-title fxLayoutAlign="center" fxFlex="20%">Szerkesztés</mat-card-title>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+        <p fxLayoutAlign="center" fxFlex="60%">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum sed nostrum distinctio, quaerat esse nam tenetur laudantium eligendi voluptatibus iusto.</p>
+        <p fxLayoutAlign="center" fxFlex="20%"> tesztkep.jpg</p>
+        <mat-icon fxLayoutAlign="end" fxFlex="10%">
+          edit
+        </mat-icon>
+        <mat-icon fxLayoutAlign="start" fxFlex="10%">
+          delete
+        </mat-icon>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-around" fxLayoutGap="10px" fxFlex="95%">
+        <p fxLayoutAlign="center" fxFlex="60%">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia, ratione facere esse commodi ab quo laborum autem culpa nam reprehenderit facilis aliquid nemo totam voluptates accusamus labore a non harum?</p>
+        <p fxLayoutAlign="center" fxFlex="20%"> tesztkep.jpg</p>
+        <mat-icon fxLayoutAlign="end" fxFlex="10%">
+          edit
+        </mat-icon>
+        <mat-icon fxLayoutAlign="start" fxFlex="10%">
+          delete
+        </mat-icon>
+      </div>
     </mat-card>
     <mat-card-title>Lépések felvétele</mat-card-title>
     <mat-card-subtitle>Lépés szövege:</mat-card-subtitle>
