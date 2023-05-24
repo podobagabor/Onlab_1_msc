@@ -18,7 +18,10 @@
 }
 
 .recipe-name-box {
-    background-color: aliceblue;
+    background-color: #eeeeee;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
 }
 
 .recipe-detail-container {
@@ -27,11 +30,11 @@
 }
 
 .ingredients-container {
-    background-color: bisque;
+    background-color: #eeeeee;
 }
 
 .descriptions-box {
-    background-color: bisque;
+    background-color: #eeeeee;
     padding: 1rem;
 }
 

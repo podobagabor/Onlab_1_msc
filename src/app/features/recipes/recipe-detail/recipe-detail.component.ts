@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { RecipeService } from 'src/app/api/RecipeService';
 import { Recipe,IngredientsGroup } from 'src/app/shared/models';
 
@@ -11,12 +12,17 @@ export class RecipeDetailComponent implements OnInit {
 
   protected recipe?: Recipe;
   protected ingredients?: IngredientsGroup[];
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.recipeService.getRecipe(9).subscribe( recipe => {
-      this.recipe = recipe;
-      this.ingredients = recipe.ingredients;
+    this.activatedRoute.params.subscribe( params => {
+      const recipeId = params["id"];
+      if(recipeId) {
+        this.recipeService.getRecipe(recipeId).subscribe( recipe => {
+          this.recipe = recipe;
+          this.ingredients = recipe.ingredients;
+        })
+      }
     })
   }
 

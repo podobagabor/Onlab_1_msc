@@ -5,19 +5,26 @@ import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 import { CustomMaterialModule } from "src/app/custom-material/custom-material.module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RecipeFormComponent } from "./recipe-form/recipe-form.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { IngredientFormComponent } from './recipe-form/ingredient-form/ingredient-form.component';
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 
 @NgModule({
     declarations: [
         RecipesComponent,
         RecipeDetailComponent,
-        RecipeFormComponent
+        RecipeFormComponent,
+        IngredientFormComponent,
+        RecipeCardComponent
     ],
     imports: [
         RecipesRoutingModule,
         CustomMaterialModule,
         FlexLayoutModule,
         ReactiveFormsModule,
+        FormsModule,
+        MatDialogModule
     ],
     exports: [
 

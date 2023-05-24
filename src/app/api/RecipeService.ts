@@ -21,7 +21,8 @@ export class RecipeService {
     // Append Descriptions
     recipeCreate.Descriptions.forEach((description, index) => {
       formData.append(`Descriptions[${index}].text`, description.text);
-      formData.append(`Descriptions[${index}].photo`, description.photo);
+      if(description.photo)
+        formData.append(`Descriptions[${index}].photo`, description.photo);
     });
 
     // Append Ingredients

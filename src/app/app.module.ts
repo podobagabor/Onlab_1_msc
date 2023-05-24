@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ProbaComponent } from './features/proba/proba.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -43,8 +43,8 @@ import { RecipeFormComponent } from './features/recipes/recipe-form/recipe-form.
     CommonModule,
     FlexLayoutModule,
     MatButtonModule,
-    CustomMaterialModule
-    
+    CustomMaterialModule,
+    FormsModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -53,7 +53,8 @@ import { RecipeFormComponent } from './features/recipes/recipe-form/recipe-form.
     CommonModule,
     FlexLayoutModule,
     MatButtonModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

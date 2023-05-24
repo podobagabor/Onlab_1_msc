@@ -18,7 +18,7 @@ export interface RecipeCreate {
 
 export interface DescriptionCreate {
     text: string,
-    photo: File,
+    photo?: File,
 }
 
 export interface Comment {
@@ -50,6 +50,17 @@ export interface IngredientItem {
     name: string,
     unit: string,
     amount: number,
+}
+
+export interface IngredientCreate {
+    unit: string,
+    name: string,
+}
+
+export interface Ingredient {
+    name: string,
+    id: number,
+    unit: string,
 }
 
 export interface User {
