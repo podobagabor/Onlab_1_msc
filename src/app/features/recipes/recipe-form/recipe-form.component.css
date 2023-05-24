@@ -1,0 +1,42 @@
+.description-box {
+    height: auto;
+    background-color: whitesmoke;
+    word-wrap: break-word;
+}
+
+.button-container {
+}
+
+.main-container {
+    padding: 20px;
+}
+
+.container {
+}
+
+.container1 {
+    width: 80%;
+}
+
+.input-container {
+    width: 80%;
+}
+
+.save-button {
+    width: 100%;
+}
+
+.desc-table {
+    padding: 10px;
+}
+
+hr {
+    width: 100%;
+    border-color: grey;
+    
+}
+
+.table-container {
+    background-color: #eeeeee;
+    padding: 10px;
+}

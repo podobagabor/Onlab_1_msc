@@ -1,0 +1,19 @@
+    <div fxLayout="column" fxLayoutGap="10px">
+        <mat-dialog-content fxLayout="column" fxLayoutGap="20px">
+            <h1>Új hozzávaló felvétele</h1>
+            <mat-form-field>
+                <mat-label>Hozzávaló megnevezése</mat-label>
+                <input matInput type="text" [(ngModel)]="ingredient.name">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Hozzávaló mértékegysége</mat-label>
+                <mat-select [(ngModel)]="ingredient.unit">
+                    <mat-option [value]="'g'">gramm</mat-option>
+                    <mat-option [value]="'ml'">mililiter</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-dialog-content>
+        <mat-dialog-actions>
+            <button fxFlex="100%" mat-raised-button [mat-dialog-close]="ingredient">Mentés</button>
+        </mat-dialog-actions>
+    </div>

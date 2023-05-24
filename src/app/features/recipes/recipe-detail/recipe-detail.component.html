@@ -1,1 +1,100 @@
-<p>recipe-detail works!</p>
+<div class="header-image">
+  <img
+    class="header-image"
+    [src]="recipe?.photo"
+  />
+  <div
+    class="recipe-info-container"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <div class="recipe-name-box">
+      <h1>{{recipe?.name}}</h1>
+    </div>
+    <div
+      class="recipe-name-box"
+      fxLayout="row"
+      fxLayoutGap="10px"
+      fxLayoutAlign="space-between center"
+    >
+      <div>
+        <h2>További infók</h2>
+      </div>
+      <div fxLayout="row" fxLayoutGap="10px">
+        <mat-icon>print</mat-icon>
+        <mat-icon>favorite</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="recipe-detail-container"
+  fxLayout="row"
+  fxLayoutGap="20px"
+  fxLayout="row"
+  fxLayoutAlign="center"
+>
+  <div
+    class="ingredients-container"
+    fxFlex="20%"
+    fxLayout="column"
+    fxLayoutGap="10px"
+    fxLayoutAlign="star center"
+  >
+    <div *ngFor="let ingredientsGroup of recipe?.ingredients">
+      <h2>{{ingredientsGroup.name}}</h2>
+      <ul *ngFor="let ingredient of ingredientsGroup.ingredients">
+        {{ingredient.amount}} {{ingredient.unit}} {{ingredient.name}}
+      </ul>
+    </div>
+  </div>
+
+  <div
+    class="descriptions-container"
+    fxFlex="60%"
+    fxLayout="column"
+    fxLayoutAlign="start center"
+    fxLayoutGap="10px"
+  >
+    <div *ngFor="let description of recipe?.descriptions" class="descriptions-box" fxLayout="row" fxLayoutAlign="center">
+      <div fxFlex="80%">
+        <p>
+          {{description.text}}
+        </p>
+      </div>
+      <img
+        class="description-image"
+        fxFlex="20%"
+        [src]="description.photo"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="comments-container" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+    <h2>Kommentek</h2>
+    <div fxFlex="60%" fxLayout="row" fxLayoutGap="30px" class="comment-box">
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam quibusdam consequuntur non ipsam suscipit in similique id eos voluptate quis?</h3>
+            <mat-icon>star</mat-icon>
+        </div>
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <mat-icon class="avatar-icon">
+                account_circle
+            </mat-icon>
+            <h2>User name</h2>
+        </div>
+    </div>
+    <div fxFlex="60%" fxLayout="row" fxLayoutGap="30px" class="comment-box">
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center">
+            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam quibusdam consequuntur non ipsam suscipit in similique id eos voluptate quis?</h3>
+            <mat-icon>star</mat-icon>
+        </div>
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="center center">
+            <mat-icon class="avatar-icon">
+                account_circle
+            </mat-icon>
+            <h2>User name</h2>
+        </div>
+    </div>
+</div>
