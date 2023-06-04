@@ -10,7 +10,7 @@ import {
   IngredientItemCreate,
   IngredientsGroup,
   IngredientsGroupCreate,
-  RecipeCreate,
+  RecipeCreate
 } from 'src/app/shared/models';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 @Component({
@@ -22,14 +22,35 @@ export class RecipeFormComponent implements OnInit {
   protected file?: File;
   protected header?: File;
   protected descriptions: DescriptionCreate[] = [];
-  protected displayedCols = ['text', 'photo'];
-  protected groups: IngredientsGroupCreate[] = [];
+  protected displayedCols = ['group', 'actions'];
+  protected groups: IngredientsGroupCreate[] = [
+    {
+      name: 'alma',
+      ingredients: []
+    },
+    {
+      name: 'körte',
+      ingredients: []
+    }
+  ];
   protected ingredients: Ingredient[] = [];
   protected filteredIngredients: Ingredient[] = [];
   protected uploadedIngredients: {
-    ingredient: IngredientItem;
-    group: string;
-  }[] = [];
+    ingredient: Ingredient;
+    amount: number,
+    group: IngredientsGroupCreate;
+  }[] = [{
+    group: {
+      name: '',
+      ingredients: []
+    },
+    ingredient: {
+      name: "",
+      id: 0,
+      unit: '',
+    },
+    amount: 0,
+  }];
   recipeForm = new FormGroup({
     name: new FormControl<string>(''),
     description: new FormControl<string>(''),
@@ -46,25 +67,24 @@ export class RecipeFormComponent implements OnInit {
     private recipeService: RecipeService,
     private ingredientService: IngredientService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.updateIngredients();
-    this.recipeForm.controls.ingredientName.valueChanges.subscribe( value => {
-      if(value) {
+    this.recipeForm.controls.ingredientName.valueChanges.subscribe(value => {
+      if (value) {
         const name = typeof value === 'string' ? value : value?.name;
-        console.log(this.ingredients);
-        this.filteredIngredients = this.ingredients.filter( ingredient => ingredient.name.toLowerCase().includes(name.toLowerCase()))
+        this.filteredIngredients = this.ingredients.filter(ingredient => ingredient.name.toLowerCase().includes(name.toLowerCase()))
       }
     })
   }
 
   displayIngredient(ingredient: Ingredient | string): string {
-    if(typeof ingredient === 'object') {
-      return ingredient.name + " (" + ingredient.unit + ")"; 
+    if (typeof ingredient === 'object' && ingredient) {
+      if (ingredient.name)
+        return ingredient.name + " (" + ingredient.unit + ")";
     }
-    else 
-      return ingredient;
+    return '';
   }
 
   onChange(event: any) {
@@ -73,7 +93,6 @@ export class RecipeFormComponent implements OnInit {
 
   onHeaderChange(event: any) {
     this.header = event.target.files[0];
-    console.log(this.header);
   }
 
   saveDescription() {
@@ -97,31 +116,8 @@ export class RecipeFormComponent implements OnInit {
     this.clearIngredients();
   }
 
-  saveIngredient() {
-    const newIngredient: IngredientItemCreate = {
-      amount: this.recipeForm.controls.ingredientAmount.value || 0,
-      id: (this.recipeForm.controls.ingredientName.value as Ingredient).id,
-    };
-    if (this.recipeForm.controls.selectedIngredientGroup.value) {
-      const newIngredientForDisplay = {
-        ingredient: {
-          amount: this.recipeForm.controls.ingredientAmount.value || 0,
-          name: (this.recipeForm.controls.ingredientName.value as Ingredient)
-            .name,
-          unit: (this.recipeForm.controls.ingredientName.value as Ingredient)
-            .unit,
-        },
-        group: this.recipeForm.controls.selectedIngredientGroup.value.name,
-      };
-      this.uploadedIngredients.push(newIngredientForDisplay);
-      this.recipeForm.controls.selectedIngredientGroup.value.ingredients.push(
-        newIngredient
-      );
-    }
-    this.clearIngredients();
-  }
-
   saveRecipe() {
+    this.fixIngredients();
     const newRecipe: RecipeCreate = {
       Descriptions: this.descriptions,
       Ingredients: this.groups,
@@ -168,5 +164,58 @@ export class RecipeFormComponent implements OnInit {
         this.filteredIngredients = value;
       }
     });
+  }
+
+  add() {
+    this.uploadedIngredients.push({
+      group: { name: '', ingredients: [] },
+      ingredient: {
+        id:0,
+        name: '',
+        unit:'',
+      },
+      amount: 0,
+    })
+    this.uploadedIngredients = [...this.uploadedIngredients];
+  }
+
+  selected(event: any, ingredient: {
+    ingredient: Ingredient;
+    amount: number,
+    group: IngredientsGroupCreate;
+  }) {
+  }
+
+  deleteGroup(element: IngredientsGroupCreate) {
+    this.groups = this.groups.filter(group => group !== element);
+    this.groups = [...this.groups];
+  }
+  deleteIngredient(element: {
+    ingredient: Ingredient;
+    amount: number,
+    group: IngredientsGroupCreate;
+  }) {
+    this.uploadedIngredients = this.uploadedIngredients.filter( item => item !== element);
+    this.uploadedIngredients = [...this.uploadedIngredients];
+  }
+
+  fixIngredients() {
+    this.uploadedIngredients.forEach( element => {
+      const ingredient: IngredientItemCreate = {
+        amount: element.amount,
+        id: element.ingredient.id,
+      }
+      this.groups.find( group => group == element.group)?.ingredients.push(ingredient);
+    })
+  }
+
+  deleteStep(item: DescriptionCreate) {
+    this.descriptions = this.descriptions.filter( element => element !== item);
+    this.descriptions = [...this.descriptions];
+  }
+
+  editStep(item: DescriptionCreate) {
+    this.recipeForm.controls.description.setValue(item.text);
+    this.deleteStep(item);
   }
 }

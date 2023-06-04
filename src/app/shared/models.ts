@@ -1,10 +1,12 @@
 export interface Recipe {
+    id: number
     name: string,
     rating: number,
     descriptions: Description[],
-    comments: Comment[],
+    comments: CommentDto[],
     ingredients: IngredientsGroup[],
     photo: string,
+    user: User,
 }
 
 export interface RecipeCreate {
@@ -12,8 +14,8 @@ export interface RecipeCreate {
     Photo: File,
     Descriptions: DescriptionCreate[],
     Ingredients: IngredientsGroupCreate[],
-    UserId:number,
-    Comments: Comment[]
+    UserId: number,
+    Comments: CommentDto[]
 }
 
 export interface DescriptionCreate {
@@ -21,9 +23,19 @@ export interface DescriptionCreate {
     photo?: File,
 }
 
-export interface Comment {
+export interface CommentDto {
     body: string,
     rating: number,
+    photo?: string,
+    userId: number,
+    id: number,
+}
+
+export interface CommentCreateDto {
+    body: string,
+    rating: number,
+    photo?: File,
+    userId: number,
 }
 
 export interface Description {
@@ -42,7 +54,7 @@ export interface IngredientsGroup {
 }
 
 export interface IngredientItemCreate {
-    id:number
+    id: number
     amount: number,
 }
 
@@ -64,7 +76,7 @@ export interface Ingredient {
 }
 
 export interface User {
-    id:number,
+    id: number,
     name: string,
     email: string,
 }

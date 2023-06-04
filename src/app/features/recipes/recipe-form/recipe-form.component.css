@@ -40,3 +40,12 @@ hr {
     background-color: #eeeeee;
     padding: 10px;
 }
+
+.ingredients-table {
+    text-align: center;
+    padding: 10px;
+}
+
+.button-height {
+    height: 70%;
+}

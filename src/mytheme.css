@@ -81,7 +81,7 @@
   font: 400 14px/20px Roboto;
   letter-spacing: 0.0179em; }
 
-.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button,
+.mat-button,  .mat-mdc-raised-button, .mat-icon-button, .mat-stroked-button,
 .mat-flat-button, .mat-fab, .mat-mini-fab {
   font-family: Roboto;
   font-size: 14px;
@@ -879,7 +879,7 @@ body {
   background: white;
   color: rgba(0, 0, 0, 0.87); }
 
-.mat-button, .mat-icon-button, .mat-stroked-button {
+.mat-button, .mat-icon-button, .mat-stroked-button, .mat-mdc-raised-button {
   color: inherit;
   background: transparent; }
   .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {

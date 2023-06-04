@@ -1,3 +1,5 @@
-<mat-card>
-  <img class="header-image" />
+<mat-card class="main-card">
+  <img class="background" [src]="recipe?.photo">
+  <h2>{{recipe?.name}}</h2>
+  <h3>{{recipe?.user?.name}} recepje</h3>
 </mat-card>
