@@ -11,6 +11,8 @@ export class LayoutComponent {
 
   constructor(private dialog: MatDialog) {}
 
+  protected url = "/assets/logoKep.png";
+
   login() {
     const ref = this.dialog.open(LoginDialogComponent);
     ref.afterClosed().subscribe(

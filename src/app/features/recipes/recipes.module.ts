@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IngredientFormComponent } from './recipe-form/ingredient-form/ingredient-form.component';
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import { IngredientAddingFormComponent } from './recipe-form/ingredient-adding-form/ingredient-adding-form.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { RecipeCardComponent } from './recipe-card/recipe-card.component';
         RecipeDetailComponent,
         RecipeFormComponent,
         IngredientFormComponent,
-        RecipeCardComponent
+        RecipeCardComponent,
+        IngredientAddingFormComponent
     ],
     imports: [
         RecipesRoutingModule,

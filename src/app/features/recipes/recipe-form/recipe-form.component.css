@@ -1,25 +1,23 @@
 .description-box {
     height: auto;
-    background-color: whitesmoke;
+    background-color: white;
     word-wrap: break-word;
 }
 
-.button-container {
-}
+.button-container {}
 
 .main-container {
     padding: 20px;
 }
 
-.container {
-}
+.container {}
 
 .container1 {
     width: 80%;
 }
 
 .input-container {
-    width: 80%;
+    width: 200px;
 }
 
 .save-button {
@@ -30,14 +28,23 @@
     padding: 10px;
 }
 
+.desc {
+    display: block;
+    width: 60%; /*based on how much width this div should have*/
+    word-wrap: break-word;
+}
+
 hr {
     width: 100%;
-    border-color: grey;
-    
+    border-color: #20a39e;
+    height: 3px;
+    background-color: #20a39e;
+    border-radius: 3px;
+
 }
 
 .table-container {
-    background-color: #eeeeee;
+    background-color: white;
     padding: 10px;
 }
 
@@ -48,4 +55,25 @@ hr {
 
 .button-height {
     height: 70%;
+}
+
+h1 {
+    margin-bottom: 0 !important;
+}
+
+h3 {
+    margin-top: 0 !important;
+}
+
+.card {
+    padding: 1rem;
+    background-color: #20a39f17;
+}
+
+mat-form-field {
+    padding: 0;
+}
+
+.table-card {
+    margin: 20px;
 }

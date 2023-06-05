@@ -1,0 +1,35 @@
+<div fxLayout="row" fxLayoutAlign="space-between" [formGroup]="form">
+  <mat-form-field appearance="outline" fxFlex="25%">
+    <mat-label>Csoport</mat-label>
+    <mat-select formControlName="selectedIngredientGroup">
+      <mat-option *ngFor="let ingredientGroup of ingredientGroups"
+        [value]="ingredientGroup">{{ingredientGroup.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field fxFlex="25%" appearance="outline">
+    <mat-label>
+      Név
+    </mat-label>
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayIngredient">
+      <mat-option *ngFor="let ingredient of filteredIngredients" [value]="ingredient">{{ingredient?.name}}
+        ({{ingredient?.unit}})</mat-option>
+    </mat-autocomplete>
+    <input matInput formControlName="ingredientName" type="text" [matAutocomplete]="auto">
+  </mat-form-field>
+  <mat-form-field fxFlex="25%" appearance="outline">
+    <mat-label>Mennyiség</mat-label>
+    <input matInput formControlName="ingredientAmount" type="number" />
+  </mat-form-field>
+  <div fxFlex="10%">
+    <button  *ngIf="ingredient"mat-icon-button (click)="deleteIngredient()">
+      <mat-icon color="primary">
+        delete
+      </mat-icon>
+    </button>
+  </div>
+  <div fxFlex="10%">
+    <button *ngIf="!ingredient && !editing" (click)="add()" class="button-height" mat-raised-button color="primary">Felvétel</button>
+    <button *ngIf="ingredient && !editing" (click)="edit()" class="button-height"  mat-raised-button color="primary">Módosítás</button>
+    <button *ngIf="editing" (click)="modify()" class="button-height"  mat-raised-button color="primary">Mentés</button>
+  </div>
+</div>

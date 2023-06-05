@@ -2,120 +2,104 @@
   <mat-card fxFlex="80%" fxLayout="column" fxLayoutAlign="center" class="main-container" fxLayoutGap="30px">
     <h1>Új recept felvétele</h1>
     <hr>
-    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px" [formGroup]="recipeForm">
-      <mat-card-title>Alapadatok</mat-card-title>
-      <mat-form-field>
+    <mat-card fxLayout="column" [formGroup]="recipeForm" class="card">
+      <h3>Alapadatok</h3>
+      <mat-form-field appearance="outline">
         <mat-label>Recept neve</mat-label>
         <input matInput type="text" formControlName="name" />
       </mat-form-field>
-      <mat-card-subtitle>Tölts fel hozzá borítót:</mat-card-subtitle>
+      <h4>Tölts fel hozzá borítót:</h4>
       <input type="file" formControlName="headerPhoto" (change)="onHeaderChange($event)" />
-    </div>
-    <hr>
-    <div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="10px" [formGroup]="recipeForm">
-      <mat-card-title>Lépések felvétele</mat-card-title>
+    </mat-card>
+    <mat-card fxLayout="column" [formGroup]="recipeForm" class="card" [formGroup]="recipeForm">
+      <h3>Lépések felvétele</h3>
       <mat-card fxLayout="column" class="table-container" *ngIf="descriptions.length">
         <div fxLayout="row" fxLayoutGap="10px" fxFlex="95%">
           <mat-card-title fxLayoutAlign="center" fxFlex="60%">Lépés szövege</mat-card-title>
           <mat-card-title fxLayoutAlign="center" fxFlex="20%">Illusztráció</mat-card-title>
           <mat-card-title fxLayoutAlign="center" fxFlex="20%"></mat-card-title>
         </div>
-        <div *ngFor="let desc of descriptions" fxLayout="row"  fxLayoutGap="10px"
-          fxFlex="95%">
-          <p fxLayoutAlign="center" fxFlex="60%">{{desc.text}}</p>
+        <div *ngFor="let desc of descriptions" fxFlex="95%" fxLayoutGap="30px">
+          <p class="desc">{{desc.text}}</p>
           <p fxLayoutAlign="center" fxFlex="20%">{{desc.photo?.name}}</p>
-          <button mat-icon-button (click)="editStep(desc)">
-            <mat-icon>
-              edit
-            </mat-icon>
-          </button>
-          <button mat-icon-button (click)="deleteStep(desc)">
-            <mat-icon>
-              delete
-            </mat-icon>
-          </button>
+          <div class="icon-container">
+            <button mat-icon-button (click)="editStep(desc)">
+              <mat-icon color="primary">
+                edit
+              </mat-icon>
+            </button>
+            <button mat-icon-button (click)="deleteStep(desc)">
+              <mat-icon color="primary">
+                delete
+              </mat-icon>
+            </button>
+          </div>
         </div>
       </mat-card>
-      <mat-card-subtitle>Lépés szövege:</mat-card-subtitle>
-      <mat-form-field>
-        <mat-label>Leírás</mat-label>
-        <textarea matInput type="text" formControlName="description" cdkTextareaAutosize
-          cdkAutosizeMinRows="4"></textarea>
-      </mat-form-field>
-      <mat-card-subtitle>Tölts fel hozzá illusztrációt:</mat-card-subtitle>
-      <input type="file" (change)="onChange($event)" formControlName="descPhoto" />
-      <button (click)="saveDescription()" mat-raised-button type="submit">
+      <div fxLayout="row" fxLayoutGap="20px">
+        <div fxLayout="column" fxFlex="70%">
+          <h4>Lépés szövege:</h4>
+          <mat-form-field appearance="outline">
+            <mat-label>Leírás</mat-label>
+            <textarea matInput type="text" formControlName="description" cdkTextareaAutosize
+              cdkAutosizeMinRows="4"></textarea>
+          </mat-form-field>
+        </div>
+        <div fxLayout="column">
+          <h4>Tölts fel hozzá illusztrációt:</h4>
+          <input type="file" (change)="onChange($event)" formControlName="descPhoto" />
+        </div>
+      </div>
+      <button color="primary" (click)="saveDescription()" mat-raised-button type="submit">
         Lépés felvétele
       </button>
-    </div>
-    <hr>
-    <mat-card-title>Hozzávalók felvétele</mat-card-title>
-    <mat-card-subtitle>Hozzávaló csoport</mat-card-subtitle>
-    <mat-card>
-      <table *ngIf="groups.length" mat-table [dataSource]="groups">
-        <ng-container matColumnDef="group">
-          <th mat-header-cell *matHeaderCellDef> Csoport</th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-        </ng-container>
-        <ng-container matColumnDef="actions" stickyEnd>
-          <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element">
-            <div fxLayout="row" fxLayoutAlign="end">
-              <button (click)="deleteGroup(element)" mat-icon-button>
-                <mat-icon>
-                  delete
-                </mat-icon>
-              </button>
-            </div>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedCols;"></tr>
-      </table>
     </mat-card>
-    <div fxLayout="row" fxLayoutAlign="space-between">
-      <mat-form-field fxFlex="85%" [formGroup]="recipeForm">
-        <mat-label>Hozzávaló csoport felvétele</mat-label>
-        <input matInput type="text" formControlName="ingredientGroup" />
-      </mat-form-field>
-      <button class="button-height" fxFlex="13%" (click)="saveIngredientGroup()" mat-raised-button type="submit">
-        Csoport felvétele
-      </button>
-    </div>
-    <mat-card-subtitle>Hozzávalók</mat-card-subtitle>
-    <div *ngFor="let item of uploadedIngredients; let i = index" fxLayout="row" fxLayoutAlign="space-around">
-      <mat-form-field fxFlex="28%">
-        <mat-label>Csoport</mat-label>
-        <mat-select [(ngModel)]="item.group">
-          <mat-option *ngFor="let ingredientGroup of groups"
-            [value]="ingredientGroup">{{ingredientGroup.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field fxFlex="28%">
-        <mat-label>
-          Név
-        </mat-label>
-        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayIngredient">
-          <mat-option *ngFor="let ingredient of filteredIngredients" [value]="ingredient">{{ingredient?.name}}
-            ({{ingredient?.unit}})</mat-option>
-        </mat-autocomplete>
-        <input matInput [(ngModel)]="item.ingredient" type="text" [matAutocomplete]="auto">
-      </mat-form-field>
-      <mat-form-field fxFlex="28%">
-        <mat-label>Mennyiség</mat-label>
-        <input matInput type="number" [(ngModel)]="item.amount" />
-      </mat-form-field>
-      <div *ngIf="i !== uploadedIngredients.length-1" fxFlex="10%">
-        <button mat-icon-button (click)="deleteIngredient(item)">
-          <mat-icon>
-            delete
-          </mat-icon>
+    <mat-card fxLayout="column" [formGroup]="recipeForm" class="card">
+      <h3>Hozzávalók felvétele</h3>
+      <h4>Hozzávaló csoport</h4>
+      <mat-card class="table-card">
+        <table *ngIf="groups.length" mat-table [dataSource]="groups">
+          <ng-container matColumnDef="group">
+            <th mat-header-cell *matHeaderCellDef> Csoport</th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+          <ng-container matColumnDef="actions" stickyEnd>
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <div fxLayout="row" fxLayoutAlign="end">
+                <button (click)="deleteGroup(element)" mat-icon-button>
+                  <mat-icon color="primary">
+                    delete
+                  </mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedCols"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedCols;"></tr>
+        </table>
+      </mat-card>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field fxFlex="65%" [formGroup]="recipeForm" appearance="outline">
+          <mat-label>Hozzávaló csoport felvétele</mat-label>
+          <input matInput type="text" formControlName="ingredientGroup" />
+        </mat-form-field>
+        <button class="button-height" fxFlex="13%" (click)="saveIngredientGroup()" color="primary" mat-raised-button
+          type="submit">
+          Csoport felvétele
+        </button>
+        <button class="button-height" fxFlex="13%" (click)="newIngredient()" color="primary" mat-raised-button
+          type="submit">
+          Új hozzávaló regisztálása
         </button>
       </div>
-      <button *ngIf="i === uploadedIngredients.length-1" (click)="add()" class="button-height" fxFlex="10%"
-        mat-raised-button>Felvétel</button>
-    </div>
-    <button (click)="saveRecipe()" mat-raised-button color="accent" type="submit">
+    </mat-card>
+    <mat-card fxLayout="column" [formGroup]="recipeForm" class="card">
+      <h4>Hozzávalók</h4>
+      <app-ingredient-adding-form *ngFor="let ingredient of uploadedIngredients; let i = index" [selectableIngredients]="ingredients" (itemChanged)="refreshIngredients($event)" [ingredient]="ingredient" [ingredientGroups]="groups"  (itemDeleted)="ingredientDeleted($event)" (itemModified)="ingredientModified($event)" [index]="i"></app-ingredient-adding-form>
+      <app-ingredient-adding-form [ingredientGroups]="groups" [selectableIngredients]="ingredients" (itemChanged)="refreshIngredients($event)"></app-ingredient-adding-form>
+    </mat-card>
+    <button (click)="saveRecipe()" mat-raised-button color="primary" type="submit">
       Recept mentése
     </button>
   </mat-card>

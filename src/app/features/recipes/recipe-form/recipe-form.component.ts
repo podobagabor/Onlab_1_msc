@@ -23,34 +23,14 @@ export class RecipeFormComponent implements OnInit {
   protected header?: File;
   protected descriptions: DescriptionCreate[] = [];
   protected displayedCols = ['group', 'actions'];
-  protected groups: IngredientsGroupCreate[] = [
-    {
-      name: 'alma',
-      ingredients: []
-    },
-    {
-      name: 'körte',
-      ingredients: []
-    }
-  ];
+  protected groups: IngredientsGroupCreate[] = [];
   protected ingredients: Ingredient[] = [];
   protected filteredIngredients: Ingredient[] = [];
   protected uploadedIngredients: {
     ingredient: Ingredient;
     amount: number,
     group: IngredientsGroupCreate;
-  }[] = [{
-    group: {
-      name: '',
-      ingredients: []
-    },
-    ingredient: {
-      name: "",
-      id: 0,
-      unit: '',
-    },
-    amount: 0,
-  }];
+  }[] = [];
   recipeForm = new FormGroup({
     name: new FormControl<string>(''),
     description: new FormControl<string>(''),
@@ -153,6 +133,7 @@ export class RecipeFormComponent implements OnInit {
     ref.afterClosed().subscribe((result) => {
       this.ingredientService.createIngredient(result).subscribe((value) => {
         this.recipeForm.controls.ingredientName.patchValue(value);
+        this.updateIngredients();
       });
     });
   }
@@ -161,7 +142,10 @@ export class RecipeFormComponent implements OnInit {
     this.ingredientService.getIngredients().subscribe((value) => {
       if (value) {
         this.ingredients = value;
+        this.ingredients = [...this.ingredients];
         this.filteredIngredients = value;
+        this.filteredIngredients = [...this.filteredIngredients];
+        console.log(this.filteredIngredients);
       }
     });
   }
@@ -170,9 +154,9 @@ export class RecipeFormComponent implements OnInit {
     this.uploadedIngredients.push({
       group: { name: '', ingredients: [] },
       ingredient: {
-        id:0,
+        id: 0,
         name: '',
-        unit:'',
+        unit: '',
       },
       amount: 0,
     })
@@ -195,27 +179,60 @@ export class RecipeFormComponent implements OnInit {
     amount: number,
     group: IngredientsGroupCreate;
   }) {
-    this.uploadedIngredients = this.uploadedIngredients.filter( item => item !== element);
+    this.uploadedIngredients = this.uploadedIngredients.filter(item => item !== element);
     this.uploadedIngredients = [...this.uploadedIngredients];
   }
 
   fixIngredients() {
-    this.uploadedIngredients.forEach( element => {
+    this.uploadedIngredients.forEach(element => {
       const ingredient: IngredientItemCreate = {
         amount: element.amount,
         id: element.ingredient.id,
       }
-      this.groups.find( group => group == element.group)?.ingredients.push(ingredient);
+      this.groups.find(group => group == element.group)?.ingredients.push(ingredient);
     })
   }
 
   deleteStep(item: DescriptionCreate) {
-    this.descriptions = this.descriptions.filter( element => element !== item);
+    this.descriptions = this.descriptions.filter(element => element !== item);
     this.descriptions = [...this.descriptions];
   }
 
   editStep(item: DescriptionCreate) {
     this.recipeForm.controls.description.setValue(item.text);
     this.deleteStep(item);
+  }
+
+  refreshIngredients(newIngredient: {
+    ingredient: Ingredient;
+    amount: number,
+    group: IngredientsGroupCreate;
+  }) {
+    this.ingredientDeleted(newIngredient);
+    this.uploadedIngredients.push(newIngredient);
+    this.uploadedIngredients = [...this.uploadedIngredients];
+    console.log(this.uploadedIngredients);
+  }
+
+  ingredientDeleted(deletedIngredient: {
+    ingredient: Ingredient;
+    amount: number,
+    group: IngredientsGroupCreate;
+  }) {
+    this.uploadedIngredients = this.uploadedIngredients.filter(ingredient => ingredient !== deletedIngredient);
+    this.uploadedIngredients = [...this.uploadedIngredients];
+    console.log(this.uploadedIngredients);
+  }
+
+  ingredientModified(element: {
+    item: {
+      ingredient: Ingredient;
+      amount: number,
+      group: IngredientsGroupCreate;
+    },
+    index: number
+  }) {
+    this.uploadedIngredients[element.index] = {...element.item};
+    this.uploadedIngredients = [...this.uploadedIngredients];
   }
 }
