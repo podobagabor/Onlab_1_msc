@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginUser, UserCreate } from 'src/app/shared/models';
+import { LoginUser, User, UserCreate } from 'src/app/shared/models';
 
 @Injectable({
   providedIn: 'any',
@@ -30,5 +30,9 @@ export class AuthenticationService {
       'https://localhost:7158/api/User/register',
       user
     );
+  }
+
+  getUser(userId: number): Observable<User> {
+    return this.httpClient.get<User>("https://localhost:7158/api/User/findUser?id=" + userId.toString());
   }
 }

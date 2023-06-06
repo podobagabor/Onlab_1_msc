@@ -9,7 +9,7 @@
   background-color: #20a39e;
   height: 6rem;
   box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
-
+  margin:0;
 }
 
 a {
@@ -37,7 +37,7 @@ mat-icon {
 .logo-container {
   background-color: #ffba49;
   position: relative;
-  box-shadow: inset 0 0 20px #20a39e;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
 
 }
 

@@ -3,6 +3,7 @@
 body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 14px;
+    margin: 0 !important;
   }
 
   .mdc-button {
@@ -13,10 +14,7 @@ body {
     width: 100%;
   }
   
-  .container {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+ 
   .table-container {
     overflow: auto;
     table {
