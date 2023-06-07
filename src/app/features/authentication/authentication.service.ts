@@ -26,13 +26,25 @@ export class AuthenticationService {
   }
 
   registration(user: UserCreate): Observable<{ succeeded: Boolean }> {
+    const formData = new FormData();
+    formData.append('email', user.email);
+    formData.append('name', user.name);
+    formData.append('password', user.password);
+    formData.append('userName', user.userName);
+    if(user.photo) {
+      formData.append('photo', user.photo);
+    }
     return this.httpClient.post<{ succeeded: Boolean }>(
       'https://localhost:7158/api/User/register',
-      user
+      formData
     );
   }
 
   getUser(userId: number): Observable<User> {
     return this.httpClient.get<User>("https://localhost:7158/api/User/findUser?id=" + userId.toString());
+  }
+
+  currentUser(): Observable<User> {
+    return this.httpClient.get<User>("")
   }
 }
