@@ -63,6 +63,6 @@ export class RecipeService {
 
   updateRecipe(recipeId: number, recipe: Recipe): Observable<Recipe> {
     return this.httpClient.put<Recipe>(
-      `https://localhost:7158/api/Recipe/`,recipe);
+      `https://localhost:7158/api/Recipe/`+ recipeId.toString(),recipe);
   }
 }

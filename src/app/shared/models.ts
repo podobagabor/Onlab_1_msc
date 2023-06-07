@@ -39,6 +39,7 @@ export interface CommentCreateDto {
 }
 
 export interface Description {
+    id:number,
     text: string,
     photo: string,
 }
@@ -92,4 +93,5 @@ export interface UserCreate {
     password: string,
     userName: string,
     name: string,
+    photo?: File,
 }
