@@ -166,25 +166,13 @@ export class RecipeFormComponent implements OnInit {
     this.uploadedIngredients = [...this.uploadedIngredients];
   }
 
-  selected(event: any, ingredient: {
-    ingredient: Ingredient;
-    amount: number,
-    group: IngredientsGroupCreate;
-  }) {
-  }
+
 
   deleteGroup(element: IngredientsGroupCreate) {
     this.groups = this.groups.filter(group => group !== element);
     this.groups = [...this.groups];
   }
-  deleteIngredient(element: {
-    ingredient: Ingredient;
-    amount: number,
-    group: IngredientsGroupCreate;
-  }) {
-    this.uploadedIngredients = this.uploadedIngredients.filter(item => item !== element);
-    this.uploadedIngredients = [...this.uploadedIngredients];
-  }
+
 
   fixIngredients() {
     this.uploadedIngredients.forEach(element => {
