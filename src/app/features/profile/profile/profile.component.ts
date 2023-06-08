@@ -25,19 +25,23 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeService.getRecipes().subscribe(value => {
-      if (value) {
-        const userId = Number(localStorage.getItem("userId"));
-        //value.forEach( recipe => {
-        //  if(recipe.user.id === userId) {
-        //    this.recipes.push(recipe);
-        //  }
-        //})
-        this.recipes = value;
+      const userId = Number(localStorage.getItem("userId"));
+      if (value && userId) {
+        value.forEach( recipe => {
+          if(recipe.user.id === userId) {
+            this.recipes.push(recipe);
+          }
+        })
       }
     })
     this.articleService.getArticle().subscribe(value => {
-      if(value) {
-        this.articles = value;
+      const userId = Number(localStorage.getItem("userId"));
+      if(value && userId) {
+        value.forEach( article => {
+          if(article.user.id === userId) {
+            this.articles.push(article);
+          }
+        })
       }
     })
   }
