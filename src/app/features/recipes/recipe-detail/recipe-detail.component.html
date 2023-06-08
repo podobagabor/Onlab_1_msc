@@ -81,6 +81,6 @@
     </div>
     <div fxLayout="column">
     </div>
-    <button (click)="saveComment()" mat-raised-button color="primary">Mentés</button>
+    <button [disabled]="!hasUser" (click)="saveComment()" mat-raised-button color="primary">Mentés</button>
   </mat-card>
 </div>

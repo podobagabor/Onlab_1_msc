@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
-import {RouterModule, Routes} from '@angular/router'
-import { DashboardComponent } from "./features/dashboard/dashboard.component";
+import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from "./shared/layout/layout.component";
+import { DashboardComponent } from "./features/dashboard/dashboard.component";
 
 const appRoutes: Routes = [
     {
@@ -9,12 +9,21 @@ const appRoutes: Routes = [
         loadChildren: () => import('./features/recipes/recipes.module').then(m => m.RecipeModule),
     },
     {
+        path: 'article',
+        loadChildren: () => import('./features/article/article.module').then(m => m.ArticleModule),
+    },
+    {
         path: 'login',
         loadChildren: () => import('./features/authentication/authentication.module').then(m => m.AuthenticationModule),
     },
     {
+        path: 'profile',
+        loadChildren: () => import('./features/profile/profile.module').then(m => m.ProfileModule),
+    },
+    {
         path: 'dashboard',
         component: LayoutComponent,
+        loadChildren: DashboardComponent
     },
     {
         path: '**',
@@ -31,4 +40,4 @@ const appRoutes: Routes = [
     providers: []
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }

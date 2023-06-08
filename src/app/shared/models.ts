@@ -81,6 +81,7 @@ export interface User {
     name: string,
     email: string,
     photo: string,
+    userName: string;
 }
 
 export interface LoginUser {
@@ -94,4 +95,22 @@ export interface UserCreate {
     userName: string,
     name: string,
     photo?: File,
+}
+
+export interface Article {
+    id: number,
+    title: string,
+    body: string,
+    photo: string,
+    userId: number,
+    comments: CommentDto[],
+    user: User,
+}
+
+export interface ArticleCreate {
+    title: string,
+    body: string,
+    photo?: File,
+    userId: number,
+    comments: CommentDto[]
 }

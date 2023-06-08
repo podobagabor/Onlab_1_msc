@@ -11,18 +11,8 @@ export class AuthenticationService {
 
   login(
     user: LoginUser
-  ): Observable<{
-    succeeded: Boolean;
-    isLockedOut: Boolean;
-    isNotAllowed: Boolean;
-    requiresTwoFactor: Boolean;
-  }> {
-    return this.httpClient.post<{
-      succeeded: Boolean;
-      isLockedOut: Boolean;
-      isNotAllowed: Boolean;
-      requiresTwoFactor: Boolean;
-    }>('https://localhost:7158/api/User/login', user);
+  ): Observable<any> {
+    return this.httpClient.post<any>('https://localhost:7158/api/User/login', user);
   }
 
   registration(user: UserCreate): Observable<{ succeeded: Boolean }> {
@@ -45,6 +35,6 @@ export class AuthenticationService {
   }
 
   currentUser(): Observable<User> {
-    return this.httpClient.get<User>("")
+    return this.httpClient.get<User>("https://localhost:7158/api/User/currentUser");
   }
 }

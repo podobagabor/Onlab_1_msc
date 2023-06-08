@@ -1,0 +1,67 @@
+<div class="header-image">
+    <img class="header-image" [src]="article?.photo" />
+    <div class="recipe-info-container" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="recipe-name-box">
+        <h1>{{article?.title}}</h1>
+      </div>
+      <div class="recipe-name-box" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="space-between center">
+        <div>
+          <h2>További infók</h2>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <mat-icon>print</mat-icon>
+          <mat-icon>favorite</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="recipe-detail-container" fxLayout="row" fxLayoutGap="20px" fxLayout="row" fxLayoutAlign="center">
+    <p>{{article?.body}}</p>
+  </div>
+  
+  <h2 fxLayout="row" fxLayoutAlign="center">Kommentek</h2>
+  <div  fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="30px">
+    <div class="comment-container" fxLayout="row" fxLayoutAlign="center" fxFlex="80%">
+      <div *ngFor="let comment of comments" fxLayout="row" fxLayoutGap="50px" class="comment-box">
+        <div fxLayout="column" fxLayoutGap="10px" fxLayoutAlign="end">
+          <img class="comment-photo" [src]="comment.comment.photo">
+          <h3>{{comment.comment.body}}</h3>
+          <div fxLayout="row" fxLayoutGap="10px">
+            <mat-icon *ngFor="let _ of [].constructor(comment.comment.rating)">star</mat-icon>
+          </div>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="start center">
+          <img class="user-photo" [src]="comment.userPhoto">
+          <h2>{{comment.userName}}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="add-comment-container" [formGroup]="commentForm" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card fxLayout="column" fxFlex="80%" class="comments-card">
+      <h2 fxLayout="row" fxLayoutAlign="center">Küldd el az eredményt!</h2>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <mat-form-field appearance="outline" fxFlex="60%">
+          <mat-label>Komment</mat-label>
+          <textarea formControlName="comment" matInput></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Értékelj</mat-label>
+          <mat-select formControlName="rate">
+            <mat-option [value]="1">1</mat-option>
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="3">3</mat-option>
+            <mat-option [value]="4">4</mat-option>
+            <mat-option [value]="5">5</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxLayout="column">
+          <mat-label>Illusztráció</mat-label>
+          <input type="file" formControlName="photo" (change)="onHeaderChange($event)" />
+        </div>
+      </div>
+      <div fxLayout="column">
+      </div>
+      <button [disabled]="!hasUser" (click)="saveComment()" mat-raised-button color="primary">Mentés</button>
+    </mat-card>
+  </div>

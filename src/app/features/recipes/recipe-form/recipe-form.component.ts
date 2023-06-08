@@ -13,6 +13,7 @@ import {
   RecipeCreate
 } from 'src/app/shared/models';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-recipe-form',
   templateUrl: './recipe-form.component.html',
@@ -46,7 +47,8 @@ export class RecipeFormComponent implements OnInit {
   constructor(
     private recipeService: RecipeService,
     private ingredientService: IngredientService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -98,17 +100,18 @@ export class RecipeFormComponent implements OnInit {
 
   saveRecipe() {
     this.fixIngredients();
+    const userId = Number(localStorage.getItem("userId"));
     const newRecipe: RecipeCreate = {
       Descriptions: this.descriptions,
       Ingredients: this.groups,
       Name: this.recipeForm.controls.name.value || '',
       Photo: this.header!,
-      UserId: 1,
+      UserId: userId,
       Comments: [],
     };
     console.log(newRecipe);
     this.recipeService.createRecipe(newRecipe).subscribe((value) => {
-      console.log(value);
+      this.router.navigateByUrl("/profile");
     });
   }
 

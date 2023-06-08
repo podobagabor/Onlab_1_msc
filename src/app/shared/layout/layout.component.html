@@ -19,7 +19,8 @@
       </div>
       <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30%">
         <div class="navbar-link-container">
-          <a class="navbar-link" routerLink="/login"> Bejelentkezés </a>
+          <a class="navbar-link" *ngIf="!user" routerLink="/login"> Bejelentkezés </a>
+          <a class="navbar-link" *ngIf="user" routerLink="/profile"> {{user.name}} </a>
         </div>
         <hr />
         <div fxLayout="row" fxLayoutAlign="center center" class="navbar-link-container navbar-link"
@@ -31,8 +32,8 @@
     </div>
     <mat-sidenav-container>
       <mat-sidenav #sidenav position="end">
-        <div fxLayout="column" fxLayoutAlign="center center">
-          <mat-icon class="avatar-icon">
+        <div *ngIf="!user" fxLayout="column" fxLayoutAlign="center center">
+          <mat-icon  class="avatar-icon">
             account_circle
           </mat-icon>
           <a>
@@ -42,6 +43,18 @@
           <a routerLink="/login/registration">
             <h2>Regisztrálj!</h2>
           </a>
+        </div>
+        <div *ngIf="user" fxLayout="column" fxLayoutAlign="center center">
+          <img [src]="user.photo" class="userImage">
+          <h2>{{user.name}}</h2>
+          <div class="separator"></div>
+          <a class="settings-button" mat-raised-button color="primary" routerLink="/login/registration">
+            Beállítások
+          </a>
+          <div class="separator"></div>
+          <button (click)="logOut()" class="settings-button" mat-raised-button color="primary">
+            Kilépés
+          </button>
         </div>
       </mat-sidenav>
       <mat-sidenav-content class="content-container">

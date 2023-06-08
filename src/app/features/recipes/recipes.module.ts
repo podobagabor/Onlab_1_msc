@@ -29,7 +29,7 @@ import { IngredientAddingFormComponent } from './recipe-form/ingredient-adding-f
         MatDialogModule
     ],
     exports: [
-
+        RecipeCardComponent
     ]
 })
 

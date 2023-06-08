@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ArticleService } from 'src/app/api/ArticleService';
 import { RecipeService } from 'src/app/api/RecipeService';
-import { Recipe, Article } from 'src/app/shared/models';
+import { Article, Recipe } from 'src/app/shared/models';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.scss']
 })
-export class DashboardComponent {
+export class ProfileComponent implements OnInit {
+
   protected recipes: Recipe[] = [];
   protected articles: Article[] = [];
   constructor(private router: Router, private recipeService: RecipeService, private articleService: ArticleService) {}

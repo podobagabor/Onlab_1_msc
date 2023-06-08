@@ -1,39 +1,37 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ArticleService } from 'src/app/api/ArticleService';
 import { CommentService } from 'src/app/api/CommentService';
-import { RecipeService } from 'src/app/api/RecipeService';
-import { Recipe, IngredientsGroup, CommentDto, CommentCreateDto } from 'src/app/shared/models';
+import { Article, CommentCreateDto, CommentDto } from 'src/app/shared/models';
 import { AuthenticationService } from '../../authentication/authentication.service';
 
 @Component({
-  selector: 'app-recipe-detail',
-  templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css']
+  selector: 'app-article-detail',
+  templateUrl: './article-detail.component.html',
+  styleUrls: ['./article-detail.component.scss']
 })
-export class RecipeDetailComponent implements OnInit {
-
-  protected recipe?: Recipe;
-  protected ingredients?: IngredientsGroup[];
-  protected comments?: { comment: CommentDto, userName: string, userPhoto: string }[] = []
-  protected file?: File;
-  protected hasUser: boolean = false;
+export class ArticleDetailComponent implements OnInit{
 
   protected commentForm = new FormGroup({
     comment: new FormControl<string>(''),
     photo: new FormControl<File | undefined>(undefined),
     rate: new FormControl<number>(5),
   })
-  constructor(private recipeService: RecipeService, private activatedRoute: ActivatedRoute, private commentService: CommentService, private userService: AuthenticationService) { }
-
+  protected article?: Article;
+  protected comments?: { comment: CommentDto, userName: string, userPhoto: string }[] = []
+  protected file?: File;
+  protected hasUser: boolean = false;
+  
+  constructor(private articleService: ArticleService, private activatedRoute: ActivatedRoute, private commentService: CommentService, private userService: AuthenticationService) { }
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
-      const recipeId = params["id"];
-      if (recipeId) {
-        this.recipeService.getRecipe(recipeId).subscribe(recipe => {
-          this.recipe = recipe;
+      const articleId = params["id"];
+      if (articleId) {
+        this.articleService.getArticleById(articleId).subscribe(article => {
+          this.article = article;
           this.comments = [];
-          recipe.comments.forEach(element => {
+          article.comments.forEach(element => {
             this.userService.getUser(element.userId).subscribe(user => {
               this.comments?.push({
                 comment: element,
@@ -59,9 +57,9 @@ export class RecipeDetailComponent implements OnInit {
     }
     this.commentService.createComment(comment).subscribe(comment => {
       console.log(comment);
-      this.recipe?.comments.push(comment);
-      this.recipeService.updateRecipe(this.recipe?.id!, this.recipe!).subscribe(value => {
-        this.recipe = {...value};
+      this.article?.comments.push(comment);
+      this.articleService.updateArticle(this.article?.id!, this.article!).subscribe(value => {
+        this.article = {...value};
         this.comments = [];
         value.comments.forEach(element => {
           this.userService.getUser(element.userId).subscribe(user => {
@@ -83,5 +81,4 @@ export class RecipeDetailComponent implements OnInit {
   onHeaderChange(event: any) {
     this.file = event.target.files[0];
   }
-
 }

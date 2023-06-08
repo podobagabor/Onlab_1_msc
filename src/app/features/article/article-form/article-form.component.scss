@@ -1,0 +1,61 @@
+.description-box {
+    height: auto;
+    background-color: white;
+    word-wrap: break-word;
+}
+
+.main-container {
+    padding: 20px;
+}
+
+.container1 {
+    width: 80%;
+}
+
+.input-container {
+    width: 200px;
+}
+
+.save-button {
+    width: 100%;
+}
+
+.desc {
+    display: block;
+    width: 60%; /*based on how much width this div should have*/
+    word-wrap: break-word;
+}
+
+hr {
+    width: 100%;
+    border-color: #20a39e;
+    height: 3px;
+    background-color: #20a39e;
+    border-radius: 3px;
+
+}
+
+.button-height {
+    height: 70%;
+}
+
+h1 {
+    margin-bottom: 0 !important;
+}
+
+h3 {
+    margin-top: 0 !important;
+}
+
+.card {
+    padding: 1rem;
+    background-color: #20a39f17;
+}
+
+mat-form-field {
+    padding: 0;
+}
+
+.table-card {
+    margin: 20px;
+}
