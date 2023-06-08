@@ -1,0 +1,31 @@
+<div fxLayout="row" fxLayoutAlign="center" fxFlex="100%">
+    <mat-card fxFlex="80%" fxLayout="column" fxLayoutAlign="center" class="main-container" fxLayoutGap="30px">
+      <h1>Új cikk felvétele</h1>
+      <hr>
+      <mat-card fxLayout="column" [formGroup]="articleForm" class="card">
+        <h3>Alapadatok</h3>
+        <mat-form-field appearance="outline">
+          <mat-label>Cikk címe</mat-label>
+          <input matInput type="text" formControlName="name" />
+        </mat-form-field>
+        <h4>Tölts fel hozzá borítót:</h4>
+        <input type="file" formControlName="headerPhoto" (change)="onHeaderChange($event)" />
+      </mat-card>
+      <mat-card fxLayout="column" [formGroup]="articleForm" class="card" [formGroup]="articleForm">
+        <h3>Szöveg felvétele</h3>
+        <div fxLayout="row" fxLayoutGap="20px">
+          <div fxLayout="column" fxFlex="70%">
+            <h4>Szöveg:</h4>
+            <mat-form-field appearance="outline">
+              <mat-label>Leírás</mat-label>
+              <textarea matInput type="text" formControlName="description" cdkTextareaAutosize
+                cdkAutosizeMinRows="4"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card>
+      <button (click)="saveArticle()" mat-raised-button color="primary" type="submit">
+        Recept mentése
+      </button>
+    </mat-card>
+  </div>

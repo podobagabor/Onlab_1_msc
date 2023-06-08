@@ -1,1 +1,5 @@
-<p>recipes works!</p>
+<div class="main-container">
+    <div fxLayout="row wrap">
+        <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe" (click)="goDetail(recipe.id)"></app-recipe-card>
+    </div>
+</div>

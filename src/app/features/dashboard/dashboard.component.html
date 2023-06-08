@@ -1,1 +1,20 @@
-<p>dashboard works!</p>
+<div fxLayout="row"  fxLayoutAlign="space-around" fxFlex="100%">
+    <mat-card fxFlex="60%" fxLayout="column" class="recipe-container">
+        <div fxLayout="row">
+            <h1>Recepek</h1>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center">
+            <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe" (click)="goDetailRecipe(recipe.id)"></app-recipe-card>
+        </div>
+    </mat-card>
+    <mat-card fxFlex="30%" fxLayout="column" class="recipe-container">
+        <div fxLayout="row">
+            <h1>Cikkek</h1>
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="center">
+            <app-article-card *ngFor="let article of articles" [article]="article" (click)="goDetailArticle(article.id)"></app-article-card>
+        </div>
+    </mat-card>
+
+</div>  
+

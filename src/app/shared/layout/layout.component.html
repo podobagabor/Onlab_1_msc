@@ -1,54 +1,65 @@
-<div class="main-container">
-  <div fxLayout="row" class="nav-container" fxLayoutAlign="space-around">
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30%">
-      <div class="navbar-link-container">
-        <a class="navbar-link" routerLink="/dashboard"> Főoldal </a>
+<div class="container">
+  <div class="main-container">
+    <div fxLayout="row" class="nav-container" fxLayoutAlign="space-around">
+      <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30%">
+        <div class="navbar-link-container">
+          <a class="navbar-link" routerLink="/dashboard"> Főoldal </a>
+        </div>
+        <hr />
+        <div class="navbar-link-container">
+          <a class="navbar-link" routerLink="/recipes"> Receptek </a>
+        </div>
+        <hr />
+        <div class="navbar-link-container">
+          <a class="navbar-link" routerLink="/articles"> Cikkek </a>
+        </div>
       </div>
-      <hr />
-      <div class="navbar-link-container">
-        <a class="navbar-link" routerLink="/recipes"> Receptek </a>
+      <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30%" class="logo-container">
+        <img class="logo-image" src="https://containeraccount.blob.core.windows.net/msc-onlab/logo.png">
       </div>
-      <hr />
-      <div class="navbar-link-container">
-        <a class="navbar-link" routerLink="/articles"> Cikkek </a>
+      <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30%">
+        <div class="navbar-link-container">
+          <a class="navbar-link" *ngIf="!user" routerLink="/login"> Bejelentkezés </a>
+          <a class="navbar-link" *ngIf="user" routerLink="/profile"> {{user.name}} </a>
+        </div>
+        <hr />
+        <div fxLayout="row" fxLayoutAlign="center center" class="navbar-link-container navbar-link"
+          (click)="sidenav.toggle()">
+          <a> Profil </a>
+          <mat-icon>menu</mat-icon>
+        </div>
       </div>
     </div>
-    <div
-      fxLayout="row"
-      fxLayoutAlign="space-around center"
-      fxFlex="30%"
-      class="logo-container"
-    >
-      <h1>Logo helye</h1>
-    </div>
-    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="30%">
-      <div class="navbar-link-container">
-        <a class="navbar-link" routerLink="/login"> Bejelentkezés </a>
-      </div>
-      <hr />
-      <div fxLayout="row" fxLayoutAlign="center center" class="navbar-link-container navbar-link" (click)="sidenav.toggle()">
-        <a> Profil </a>
-        <mat-icon>menu</mat-icon>
-      </div>
-    </div>
-  </div>
-  <mat-sidenav-container>
-    <mat-sidenav #sidenav position="end">
-      <div fxLayout="column" fxLayoutAlign="center center">
-        <mat-icon class="avatar-icon">
+    <mat-sidenav-container>
+      <mat-sidenav #sidenav position="end">
+        <div *ngIf="!user" fxLayout="column" fxLayoutAlign="center center">
+          <mat-icon  class="avatar-icon">
             account_circle
-        </mat-icon>
-        <a>
+          </mat-icon>
+          <a>
             <h2>Jelentkezz be!</h2>
-        </a>
-        <div class="separator"></div>
-        <a routerLink="/login/registration">
+          </a>
+          <div class="separator"></div>
+          <a routerLink="/login/registration">
             <h2>Regisztrálj!</h2>
-        </a>
-      </div>
-    </mat-sidenav>
-    <mat-sidenav-content class="content-container"> 
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+          </a>
+        </div>
+        <div *ngIf="user" fxLayout="column" fxLayoutAlign="center center">
+          <img [src]="user.photo" class="userImage">
+          <h2>{{user.name}}</h2>
+          <div class="separator"></div>
+          <a class="settings-button" mat-raised-button color="primary" routerLink="/login/registration">
+            Beállítások
+          </a>
+          <div class="separator"></div>
+          <button (click)="logOut()" class="settings-button" mat-raised-button color="primary">
+            Kilépés
+          </button>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content class="content-container">
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
 </div>

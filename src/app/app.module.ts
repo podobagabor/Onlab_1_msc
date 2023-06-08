@@ -2,24 +2,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { ProbaComponent } from './features/proba/proba.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './app-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { AuthenticationModule } from './features/authentication/authentication.module';
-import { MatInputModule} from '@angular/material/input'
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatButtonModule} from '@angular/material/button'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { CustomMaterialModule } from './custom-material/custom-material.module';
+import { ArticleModule } from './features/article/article.module';
+import { AuthenticationModule } from './features/authentication/authentication.module';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { ProbaComponent } from './features/proba/proba.component';
+import { RecipeModule } from './features/recipes/recipes.module';
 import { LayoutComponent } from './shared/layout/layout.component';
 import { LoginDialogComponent } from './shared/layout/login-dialog/login-dialog.component';
-import { RecipesComponent } from './features/recipes/recipes.component';
-import { RecipeDetailComponent } from './features/recipes/recipe-detail/recipe-detail.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -42,8 +42,10 @@ import { RecipeDetailComponent } from './features/recipes/recipe-detail/recipe-d
     CommonModule,
     FlexLayoutModule,
     MatButtonModule,
-    CustomMaterialModule
-    
+    CustomMaterialModule,
+    FormsModule,
+    RecipeModule,
+    ArticleModule
   ],
   exports: [
     MatFormFieldModule,
@@ -52,7 +54,8 @@ import { RecipeDetailComponent } from './features/recipes/recipe-detail/recipe-d
     CommonModule,
     FlexLayoutModule,
     MatButtonModule,
-    CustomMaterialModule
+    CustomMaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

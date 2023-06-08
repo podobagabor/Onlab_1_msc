@@ -21,6 +21,8 @@
     <mat-label>Jelszó újra</mat-label>
     <input matInput type="text" formControlName="secondPassword" />
   </mat-form-field>
+  <h4>Tölts fel profilképet!</h4>
+  <input type="file" formControlName="headerPhoto" (change)="onChange($event)" />
 </form>
     <div class="button-container" fxLayout="column" fxLayoutGap="1rem">
       <button fxFlex="100%" mat-raised-button (click)="registration()">Regisztráció</button>

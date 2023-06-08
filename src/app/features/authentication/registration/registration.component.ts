@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent {
-
+  protected file?: File;
   form = new FormGroup({
     email: new FormControl<string>('',Validators.required),
     firstPassword: new FormControl<string>('',Validators.required),
@@ -21,13 +21,15 @@ export class RegistrationComponent {
 
   registration() {
     if(this.form.controls.firstPassword.value === this.form.controls.secondPassword.value && this.form.valid) {
-      this.authenticationService.registration({email: this.form.controls.email.value!,name: this.form.controls.fullName.value!,userName: this.form.controls.userName.value!,password: this.form.controls.firstPassword.value!}).subscribe( value => {
+      this.authenticationService.registration({email: this.form.controls.email.value!,name: this.form.controls.fullName.value!,userName: this.form.controls.userName.value!,password: this.form.controls.firstPassword.value!, photo: this.file}).subscribe( value => {
         if(value.succeeded) {
-          this.router.navigateByUrl("login");
-          localStorage.setItem("registratonSuccess",JSON.stringify(true));
+          this.router.navigateByUrl('/login');
         }
       })
     }
   }
-  
+
+  onChange(event: any) {
+    this.file = event.target.files[0];
+  }
 }
