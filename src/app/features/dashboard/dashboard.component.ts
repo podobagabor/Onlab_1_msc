@@ -7,7 +7,7 @@ import { Recipe, Article } from 'src/app/shared/models';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
   protected recipes: Recipe[] = [];

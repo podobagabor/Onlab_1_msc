@@ -23,7 +23,9 @@ const appRoutes: Routes = [
     {
         path: 'dashboard',
         component: LayoutComponent,
-        loadChildren: DashboardComponent
+        children: [
+            { path: '', component: DashboardComponent },
+        ],
     },
     {
         path: '**',
