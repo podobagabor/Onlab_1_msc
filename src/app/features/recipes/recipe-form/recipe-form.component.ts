@@ -109,7 +109,6 @@ export class RecipeFormComponent implements OnInit {
       UserId: userId,
       Comments: [],
     };
-    console.log(newRecipe);
     this.recipeService.createRecipe(newRecipe).subscribe((value) => {
       this.router.navigateByUrl("/profile");
     });

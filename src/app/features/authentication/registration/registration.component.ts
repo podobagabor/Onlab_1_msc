@@ -23,7 +23,7 @@ export class RegistrationComponent {
     if(this.form.controls.firstPassword.value === this.form.controls.secondPassword.value && this.form.valid) {
       this.authenticationService.registration({email: this.form.controls.email.value!,name: this.form.controls.fullName.value!,userName: this.form.controls.userName.value!,password: this.form.controls.firstPassword.value!, photo: this.file}).subscribe( value => {
         if(value.succeeded) {
-          
+          this.router.navigateByUrl('/login');
         }
       })
     }
