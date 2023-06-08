@@ -4,7 +4,7 @@
             <h1>Recepjeid</h1>
             <a color="primary" class="new-button" mat-raised-button routerLink="/recipes/create">Új recept</a>
         </div>
-        <div fxLayout="row wrap">
+        <div fxLayout="row wrap"  fxLayoutAlign="center">
             <app-recipe-card *ngFor="let recipe of recipes" [recipe]="recipe" (click)="goDetailRecipe(recipe.id)"></app-recipe-card>
         </div>
     </mat-card>
@@ -13,7 +13,7 @@
             <h1>Cikkeid</h1>
             <a color="primary" class="new-button" mat-raised-button routerLink="/article/create">Új cikk</a>
         </div>
-        <div fxLayout="row wrap">
+        <div fxLayout="row wrap"  fxLayoutAlign="center">
             <app-article-card *ngFor="let article of articles" [article]="article" (click)="goDetailArticle(article.id)"></app-article-card>
         </div>
     </mat-card>

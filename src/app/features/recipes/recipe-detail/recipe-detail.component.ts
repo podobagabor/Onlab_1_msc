@@ -55,7 +55,7 @@ export class RecipeDetailComponent implements OnInit {
       body: this.commentForm.controls.comment.value!,
       rating: this.commentForm.controls.rate.value!,
       photo: this.file,
-      userId: 1,
+      userId: Number(localStorage.getItem("userId")),
     }
     this.commentService.createComment(comment).subscribe(comment => {
       console.log(comment);
